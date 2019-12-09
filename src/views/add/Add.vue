@@ -4,9 +4,7 @@ import TabBar from 'components/tabBar/TabBar.vue';
     <tab-bar></tab-bar>
 
     <div class="add-main container">
-      <div class="add-title">
-        添加用户
-      </div>
+      <div class="add-title">添加用户</div>
 
       <el-form label-width="80px">
         <el-form-item label="姓名">
@@ -14,12 +12,7 @@ import TabBar from 'components/tabBar/TabBar.vue';
         </el-form-item>
         <el-form-item label="性别">
           <el-select v-model="value" placeholder="请选择">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              v-model="item.value"
-            >
-            </el-option>
+            <el-option v-for="item in options" :key="item.value" v-model="item.value"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="年龄">
@@ -30,14 +23,13 @@ import TabBar from 'components/tabBar/TabBar.vue';
         </el-form-item>
       </el-form>
     </div>
-    <div>{{value}}</div>
   </div>
 </template>
 
 <script>
 import TabBar from "components/tabBar/TabBar.vue";
 
-import { AddStudent } from "network/add";
+import { AddStudent } from "network/request";
 
 export default {
   data() {
@@ -54,22 +46,21 @@ export default {
           label: ""
         }
       ],
-      value: ''
+      value: ""
     };
   },
   components: {
     TabBar
   },
   methods: {
-    commit() {
+    async commit() {
       const student = {};
       student.name = this.name;
       student.age = this.age;
       student.gender = this.value == "男" ? 1 : 0;
 
-      AddStudent(student).then(res => {
-        this.$router.push("/");
-      });
+      await AddStudent(student);
+      this.$router.push("/");
     }
   }
 };

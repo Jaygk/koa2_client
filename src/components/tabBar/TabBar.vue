@@ -2,7 +2,7 @@
   <div class="home-nav">
     <div class="nav-title">XXX管理系统</div>
     <router-link tag="div" to="/home" class="user-m">用户管理</router-link>
-    <div class="shop-m">商品管理</div>
+    <!-- <div class="shop-m">商品管理</div> -->
   </div>
 </template>
 

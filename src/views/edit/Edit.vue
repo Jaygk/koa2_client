@@ -36,7 +36,7 @@ import TabBar from 'components/tabBar/TabBar.vue';
 
 <script>
 import TabBar from "components/tabBar/TabBar.vue";
-import { EditStudent } from "network/edit";
+import { EditStudent } from "network/request";
 
 export default {
   data() {
@@ -69,16 +69,15 @@ export default {
     // this.student = this.$route.params.student
   },
   methods: {
-    submit() {
+    async submit() {
       const student = {};
       student.id = this.id;
       student.name = this.name;
       student.age = this.age;
       student.gender = this.value == "男" ? 1 : 0;
 
-      EditStudent(student).then(res => {
-        this.$router.push("/");
-      });
+      await EditStudent(student)
+      this.$router.push("/");
     }
   }
 };
