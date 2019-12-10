@@ -3,9 +3,9 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import Home from 'views/home/Home.vue'
-import Add from 'views/add/Add.vue'
-import Edit from 'views/edit/Edit.vue'
+const Home = () => import('views/home/Home.vue')
+const Add = () => import('views/add/Add.vue')
+const Edit = () => import('views/edit/Edit.vue')
 
 export default new VueRouter({
   routes: [
